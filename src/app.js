@@ -1,9 +1,14 @@
+/* eslint-disable */
 import "bootstrap";
 import "./style.css";
 
+import "./assets/img/rigo-baby.jpg";
+import "./assets/img/4geeks.ico";
+
 window.onload = function() {
-  const suits = ["spades", "clubs", "hearts", "diamonds"];
-  const values = [
+  let suit = ["♥", "♠", "♣", "♦"];
+  let numbers = [
+    "A",
     "2",
     "3",
     "4",
@@ -15,17 +20,24 @@ window.onload = function() {
     "10",
     "J",
     "Q",
-    "K",
-    "A"
+    "K"
   ];
 
-  function getRandomNumbers(array) {
-    return Math.floor(Math.random() * array.length);
+  function randomCard() {
+    let randomSuit = suit[Math.floor(Math.random() * suit.length)];
+    let randomNumber = numbers[Math.floor(Math.random() * numbers.length)];
+
+    document.querySelector(".header").innerHTML = randomSuit;
+    document.querySelector(".body").innerHTML = randomNumber;
+    document.querySelector(".footer").innerHTML = randomSuit;
+
+    if (randomSuit == "♥" || randomSuit == "♦") {
+      document.querySelector("#cardcontainer").style.color = "red";
+    } else if (randomSuit == "♠" || randomSuit == "♣") {
+      document.querySelector("#cardcontainer").style.color = "black";
+    }
   }
 
-  let cards = document.querySelector(".card");
-  let numberCards = document.querySelector(".number");
-
-  cards.classList.add(suits[getRandomNumbers(suits)]);
-  numberCards.innerHTML = values[getRandomNumbers(values)];
+  randomCard();
 };
+window.onload();
